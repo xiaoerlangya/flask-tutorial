@@ -4,7 +4,7 @@ Example application for flask tutorial "[Flask 入门教程](http://helloflask.c
 
 Demo: http://watchlist.helloflask.com
 
-![Screenshot](http://helloflask.com/screenshots/watchlist.png)
+![avatar](Screenshot.png)
 
 这是这个demo的每个章节的可运行代码，每一个章节代码都可以单独运行.
 
