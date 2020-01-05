@@ -19,7 +19,7 @@ def index():
         title = request.form['title']
         year = request.form['year']
 
-        if not title or not year or len(year) > 4 or len(title) > 60:
+        if not title or not year or len(year) > 10 or len(title) > 60:
             flash('Invalid input.')
             return redirect(url_for('index'))
 
@@ -29,7 +29,8 @@ def index():
         flash('Item created.')
         return redirect(url_for('index'))
 
-    movies = Movie.query.all()
+    movies = list(Movie.query.order_by('year'))
+
     return render_template('index.html', movies=movies)
 
 
@@ -42,7 +43,7 @@ def edit(movie_id):
         title = request.form['title']
         year = request.form['year']
 
-        if not title or not year or len(year) > 4 or len(title) > 60:
+        if not title or not year or len(year) > 10 or len(title) > 60:
             flash('Invalid input.')
             return redirect(url_for('edit', movie_id=movie_id))
 

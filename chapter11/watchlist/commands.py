@@ -28,16 +28,16 @@ def forge():
 
     name = 'Tryrus Li'
     movies = [
-        {'title': 'My Neighbor Totoro', 'year': '1988'},
-        {'title': 'Dead Poets Society', 'year': '1989'},
-        {'title': 'A Perfect World', 'year': '1993'},
-        {'title': 'Leon', 'year': '1994'},
-        {'title': 'Mahjong', 'year': '1996'},
-        {'title': 'Swallowtail Butterfly', 'year': '1996'},
-        {'title': 'King of Comedy', 'year': '1999'},
-        {'title': 'Devils on the Doorstep', 'year': '1999'},
-        {'title': 'WALL-E', 'year': '2008'},
-        {'title': 'The Pork of Music', 'year': '2012'},
+        {'title': 'My Neighbor Totoro', 'year': '1988-01-02'},
+        {'title': 'King of Comedy', 'year': '1999-02-21'},
+        {'title': 'Dead Poets Society', 'year': '1989-11-02'},
+        {'title': 'The Pork of Music', 'year': '2012-05-21'},
+        {'title': 'A Perfect World', 'year': '1993-12-23'},
+        {'title': 'WALL-E', 'year': '1999-11-18'},
+        {'title': 'Leon', 'year': '1993-01-23'},
+        {'title': 'Mahjong', 'year': '1999-01-02'},
+        {'title': 'Swallowtail Butterfly', 'year': '1999-01-23'},
+        {'title': 'Devils on the Doorstep', 'year': '1999-10-12'},
     ]
 
     user = User(name=name)
