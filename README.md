@@ -15,6 +15,7 @@ python 3.7.4
 
 ## 运行步骤
 ```
+cd flask-tutorial
 pip install virtualenv
 virtualenv venv
 .\venv\Scripts\activate
