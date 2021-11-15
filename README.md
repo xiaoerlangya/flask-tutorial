@@ -14,6 +14,7 @@ python 3.7.4
 
 
 ## 运行步骤
+### windows 环境
 ```
 cd flask-tutorial
 pip install virtualenv
@@ -24,6 +25,16 @@ cd ./chapter02
 flask run
 ```
 
+### linux 环境
+```
+cd flask-tutorial
+pip install virtualenv
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cd ./chapter02
+flask run
+```
 
 ## License
 
