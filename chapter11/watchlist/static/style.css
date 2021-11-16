@@ -1,7 +1,7 @@
 /* 页面整体 */
 body {
     margin: auto;
-    max-width: 580px;
+    max-width: 720px;
     font-size: 14px;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -139,4 +139,30 @@ input[name=year] {
 
 .inline-form {
     display: inline;
+}
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}  /* 分页 */
+.pagination-sm {
+    padding-left: 0;
+    padding-right: 0;
+}
+.no-margin {
+    margin: 0;
+}
+.pull-right {
+    float: right;
+}
+.active {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+.disabled {
+    color: #ccc;
+    cursor: not-allowed;
 }

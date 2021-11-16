@@ -8,6 +8,7 @@ from flask import render_template, request, url_for, redirect, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from watchlist import app, db
 from watchlist.models import User, Movie
+from sqlalchemy import desc
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -19,7 +20,7 @@ def index():
         title = request.form['title']
         year = request.form['year']
 
-        if not title or not year or len(year) > 10 or len(title) > 60:
+        if not title or not year or len(year) > 10 or len(title) > 128:
             flash('Invalid input.')
             return redirect(url_for('index'))
 
@@ -29,9 +30,18 @@ def index():
         flash('Item created.')
         return redirect(url_for('index'))
 
-    movies = list(Movie.query.order_by('year'))
+    # movies = list(Movie.query.order_by('year'))  # 创建一个列表，把所有的电影信息放到列表中,按照年份排序,升序
+    # movies = list(Movie.query.order_by(desc(Movie.year)).all())
+    # movies = Movie.query.order_by(desc(Movie.year)).all() # 按照观看时间排序,降序
+    
+    # 分页
+    page = request.args.get('page', 1, type=int)
+    pagination = Movie.query.order_by(desc(Movie.year)).paginate(page, per_page=10, error_out=False)
+    movies = pagination.items
+    #movies = pagination
 
-    return render_template('index.html', movies=movies)
+    #return render_template('index.html', movies=movies)
+    return render_template('index.html', movies=movies, pagination=pagination)
 
 
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
@@ -43,7 +53,7 @@ def edit(movie_id):
         title = request.form['title']
         year = request.form['year']
 
-        if not title or not year or len(year) > 10 or len(title) > 60:
+        if not title or not year or len(year) > 10 or len(title) > 128:
             flash('Invalid input.')
             return redirect(url_for('edit', movie_id=movie_id))
 
@@ -72,7 +82,7 @@ def settings():
     if request.method == 'POST':
         name = request.form['name']
 
-        if not name or len(name) > 20:
+        if not name or len(name) > 128:
             flash('Invalid input.')
             return redirect(url_for('settings'))
 
