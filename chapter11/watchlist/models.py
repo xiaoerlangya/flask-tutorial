@@ -11,8 +11,8 @@ from watchlist import db
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    username = db.Column(db.String(20))
+    name = db.Column(db.String(128))
+    username = db.Column(db.String(128))
     password_hash = db.Column(db.String(128))
 
     def set_password(self, password):
@@ -24,5 +24,7 @@ class User(db.Model, UserMixin):
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(60))
+    title = db.Column(db.String(128))
     year = db.Column(db.String(10))
+    cinema_address = db.Column(db.String(128))
+    cinema_name = db.Column(db.String(128))

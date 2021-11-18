@@ -12,28 +12,10 @@ from sqlalchemy import desc
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        if not current_user.is_authenticated:
-            return redirect(url_for('index'))
-
-        title = request.form['title']
-        year = request.form['year']
-
-        if not title or not year or len(year) > 10 or len(title) > 128:
-            flash('Invalid input.')
-            return redirect(url_for('index'))
-
-        movie = Movie(title=title, year=year)
-        db.session.add(movie)
-        db.session.commit()
-        flash('Item created.')
-        return redirect(url_for('index'))
-
+def index(): 
     # movies = list(Movie.query.order_by('year'))  # 创建一个列表，把所有的电影信息放到列表中,按照年份排序,升序
     # movies = list(Movie.query.order_by(desc(Movie.year)).all())
-    # movies = Movie.query.order_by(desc(Movie.year)).all() # 按照观看时间排序,降序
-    
+    # movies = Movie.query.order_by(desc(Movie.year)).all() # 按照观看时间排序,降序    
     # 分页
     page = request.args.get('page', 1, type=int)
     pagination = Movie.query.order_by(desc(Movie.year)).paginate(page, per_page=10, error_out=False)
@@ -42,6 +24,30 @@ def index():
 
     #return render_template('index.html', movies=movies)
     return render_template('index.html', movies=movies, pagination=pagination)
+
+@app.route('/add', methods=['GET', 'POST'])
+@login_required
+def add():
+    if request.method == 'POST':
+        if not current_user.is_authenticated:
+            return redirect(url_for('index'))
+
+        title = request.form['title']
+        year = request.form['year']
+        cinema_address = request.form['cinema_address']
+        cinema_name = request.form['cinema_name']
+
+        if not title or not year or not cinema_address or not cinema_name or len(year) > 10 or len(title) > 128 or len(cinema_address) > 128 or len(cinema_name) > 128:
+            flash('Invalid input.')
+            return redirect(url_for('index'))
+
+        movie = Movie(title=title, year=year, cinema_address=cinema_address, cinema_name=cinema_name)
+        db.session.add(movie)
+        db.session.commit()
+        flash('Item created.')
+        return redirect(url_for('index'))
+        
+    return render_template('add.html')
 
 
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
@@ -52,13 +58,17 @@ def edit(movie_id):
     if request.method == 'POST':
         title = request.form['title']
         year = request.form['year']
+        cinema_address = request.form['cinema_address']
+        cinema_name = request.form['cinema_name']
 
-        if not title or not year or len(year) > 10 or len(title) > 128:
+        if not title or not year or not cinema_address or not cinema_name or len(year) > 10 or len(title) > 128 or len(cinema_address) > 128 or len(cinema_name) > 128:
             flash('Invalid input.')
             return redirect(url_for('edit', movie_id=movie_id))
 
         movie.title = title
         movie.year = year
+        movie.cinema_address = cinema_address
+        movie.cinema_name = cinema_name
         db.session.commit()
         flash('Item updated.')
         return redirect(url_for('index'))
@@ -122,5 +132,5 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('Goodbye.')
+    flash('Logout success.')
     return redirect(url_for('index'))

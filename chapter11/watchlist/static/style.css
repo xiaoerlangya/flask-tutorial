@@ -43,8 +43,8 @@ footer {
 /* 龙猫图片 */
 .totoro {
     display: block;
-    margin: 0 auto;
     height: 100px;
+    margin: 0px auto;
 }
 
 nav ul {
@@ -104,9 +104,10 @@ input[type=text] {
     border: 1px solid #ddd;
 }
 
-input[name=year] {
-    width: 50px;
-}
+/* input[name=year] {
+    width: 100px;
+} */
+
 
 .btn {
     font-size: 12px;

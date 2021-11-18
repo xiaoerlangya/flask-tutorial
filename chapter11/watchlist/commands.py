@@ -28,22 +28,22 @@ def forge():
 
     name = 'Tryrus Li'
     movies = [
-        {'title': 'My Neighbor Totoro', 'year': '1988-01-02'},
-        {'title': 'King of Comedy', 'year': '1999-02-21'},
-        {'title': 'Dead Poets Society', 'year': '1989-11-02'},
-        {'title': 'The Pork of Music', 'year': '2012-05-21'},
-        {'title': 'A Perfect World', 'year': '1993-12-23'},
-        {'title': 'WALL-E', 'year': '1999-11-18'},
-        {'title': 'Leon', 'year': '1993-01-23'},
-        {'title': 'Mahjong', 'year': '1999-01-02'},
-        {'title': 'Swallowtail Butterfly', 'year': '1999-01-23'},
-        {'title': 'Devils on the Doorstep', 'year': '1999-10-12'},
+        {'title': 'My Neighbor Totoro', 'year': '1988-01-02', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'King of Comedy', 'year': '1999-02-21', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'Dead Poets Society', 'year': '1989-11-02', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'The Pork of Music', 'year': '2012-05-21', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'A Perfect World', 'year': '1993-12-23', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'WALL-E', 'year': '1999-11-18', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'Leon', 'year': '1993-01-23', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'Mahjong', 'year': '1999-01-02', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'Swallowtail Butterfly', 'year': '1999-01-23', "cinema_address": "china", "cinema_name": "bayicinema"},
+        {'title': 'Devils on the Doorstep', 'year': '1999-10-12', "cinema_address": "china", "cinema_name": "bayicinema"},
     ]
 
     user = User(name=name)
     db.session.add(user)
     for m in movies:
-        movie = Movie(title=m['title'], year=m['year'])
+        movie = Movie(title=m['title'], year=m['year'], cinema_address=m['cinema_address'], cinema_name=m['cinema_name'])
         db.session.add(movie)
 
     db.session.commit()
